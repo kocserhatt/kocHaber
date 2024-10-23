@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const News = () => {
   const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchRSS = async () => {
@@ -22,14 +23,24 @@ const News = () => {
               console.error('Unexpected RSS format:', result);
             }
           }
+          setLoading(false);
         });
       } catch (error) {
         console.error('Error fetching RSS feed:', error);
+        setLoading(false);
       }
     };
 
     fetchRSS();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+        <h1>Yükleniyor...</h1>
+      </div>
+    );
+  }
 
   return (
     <div>
