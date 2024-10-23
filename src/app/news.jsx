@@ -11,7 +11,7 @@ const News = () => {
   useEffect(() => {
     const fetchRSS = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/rss');
+        const response = await axios.get('/api/rss');
         parseString(response.data, (err, result) => {
           if (err) {
             console.error('Error parsing XML:', err);
@@ -44,12 +44,12 @@ const News = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand" style={{fontSize:"30px"}} href="#">Koc Haber</a>
+          <a className="navbar-brand" style={{ fontSize: "30px" }} href="#">Koc Haber</a>
         </div>
       </nav>
-      <div className="container">
+      <div className="container mt-5">
         <div className="row">
           {news.map((item, index) => {
             // Resim URL'sini almak için content alanını kontrol et
